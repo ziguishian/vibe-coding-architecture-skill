@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node
+node_modules/
+dist/
+build/
+.next/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Archives
+*.zip
