@@ -87,6 +87,32 @@ Typical situations / 典型场景：
 
 ---
 
+
+## Quick start request template / 快速请求模板
+
+Copy and fill this template when you ask an AI coding assistant:  
+当你向 AI 编程助手提问时，可直接复制以下模板：
+
+```text
+I want to build: <product goal>
+Target users: <who>
+Core scenario: <main workflow>
+Constraints: <time/budget/platform>
+
+Use the Vibe Coding Architecture Skill first.
+Do not write code yet.
+Please output the Architecture Decision format with:
+1) Product Summary
+2) Product Type
+3) Recommended Architecture
+4) Recommended Tech Stack
+5) MVP Scope
+6) Data Model
+7) API Contract
+8) Key Risks
+9) Final Coding Prompt
+```
+
 ## Request examples / 请求示例
 
 You can ask the assistant like this:  
