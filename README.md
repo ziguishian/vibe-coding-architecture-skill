@@ -1,147 +1,99 @@
 # Vibe Coding Architecture Skill
 
-> A reusable AI Skill for choosing product architecture before coding.
+A reusable AI Skill for choosing product architecture before coding.
 
-很多人理解 Vibe Coding，是「我说需求，AI 写代码」。
+## What is this?
 
-但真正稳定的 Vibe Coding 应该是：
+This repository provides a reusable Skill and supporting documentation that guides AI assistants to make architecture decisions before implementation.
 
-> 我说目标，AI 先拆架构，再写代码。
+It is a documentation-first resource for AI coding workflows, not a codebase, npm package, or framework template.
 
-This repository contains a lightweight Skill that helps AI assistants pause before coding and first make architecture decisions: product type, MVP scope, tech stack, data model, API contract, risks, and final coding prompt.
+## Why architecture comes first in Vibe Coding
 
-## Why this exists
+Many AI coding failures happen not because the model cannot write code, but because the product direction was unclear at the start.
 
-In AI-assisted coding, the fastest failure mode is not that AI cannot write code.
+When product type, system boundaries, data flow, API contract, and MVP scope are vague, code quality declines and iteration cost increases.
 
-It is that AI writes too much code before the architecture is clear.
+Vibe Coding should begin with architectural clarity:
 
-If you ask AI to directly build a product, it may quickly generate pages, components, and folders. But if the product type is unclear, the project can become messy very quickly:
+- Define the product category.
+- Choose an appropriate architecture direction.
+- Reduce MVP scope.
+- Define data and API boundaries.
+- Then generate implementation prompts.
 
-- A landing page becomes a pseudo-SaaS.
-- A local tool gets an unnecessary backend.
-- A simple MVP gets over-engineered with auth, queues, and storage.
-- A real SaaS misses API contracts, database design, and error handling.
-- An AI tool has no model abstraction, usage control, or failure strategy.
+## The problem this skill solves
 
-This Skill is designed to make AI ask and answer the architecture questions first.
+Without a structured pre-coding phase, AI assistants often jump into implementation too early. This skill prevents that by forcing architecture decisions first.
 
-## Core belief
-
-> Good Vibe Coding starts before coding.
-
-Before asking AI to implement, first make it decide:
+It helps answer critical pre-coding questions:
 
 - What kind of product is this?
-- Is it local-first or cloud-first?
-- Does it need frontend only, full-stack, or a desktop app?
-- Does it need auth, database, storage, cron, queue, payments, or background jobs?
-- What is the smallest MVP?
+- Is this a landing page, SaaS, dashboard, local app, automation workflow, browser extension, API service, or AI tool?
+- Does it need frontend only, full-stack, local-first, cloud-first, or hybrid architecture?
+- Does it need auth, database, storage, queue, cron, API, background jobs, or model routing?
+- What should be included in the MVP?
 - What should not be built yet?
-- What API contract should the system follow?
-- What risks should be avoided before writing code?
+- What data model is needed?
+- What API contract is needed?
+- What are the main technical risks?
+- What final coding prompt should be given to Codex, Claude Code, Cursor, or another AI coding agent?
 
-## What this Skill does
+## When to use this skill
 
-Given a product idea, this Skill makes the AI output:
+Use this skill when:
 
-1. Product summary
-2. Product type classification
-3. Recommended architecture
-4. Recommended tech stack
-5. MVP scope
-6. Data model direction
-7. API contract direction
-8. Key risks and mitigations
-9. Final coding prompt for Codex, Claude Code, Cursor, or similar AI coding tools
+- A user wants to build a new product and requirements are still high-level.
+- A user asks for stack selection before architecture is clarified.
+- A user asks for a coding prompt but architecture decisions are incomplete.
+- A team wants a repeatable method to reduce premature coding.
 
-## When to use
+## What this skill helps AI decide
 
-Use this Skill before starting an AI-assisted coding project, especially when building:
+The skill guides AI to decide:
 
-- AI tools
-- SaaS MVPs
-- Landing pages
-- Content websites
-- Local desktop apps
-- Automation workflows
-- Dashboard products
-- Internal tools
-- Browser extensions
-- Agent workflows
+- Product type
+- Architecture direction
+- MVP boundaries
+- Data model requirements
+- API contract requirements
+- Key technical and delivery risks
+- Final implementation prompt for coding agents
 
-## How to use
+## How to use it
 
-Copy the content of [`SKILL.md`](./SKILL.md) into your AI coding assistant as a reusable instruction, or place this repository in your Skill-compatible environment.
+1. Start with `SKILL.md` as the primary instruction file.
+2. Follow the 9-step workflow from product understanding to final coding prompt.
+3. Use `references/architecture-checklist.md` for fast pre-flight checks.
+4. Review examples in `examples/` for product-type-specific patterns.
 
-Then give it a product idea like:
+## Example use cases
 
-```txt
-I want to build a local-first Xiaohongshu content automation desktop app.
-It should generate titles, captions, hashtags, image prompts, preview posts, and publish through local MCP.
-Before coding, help me choose the architecture.
-```
+- AI SaaS MVP with generation workflow and user accounts
+- Local-first desktop tool with local data and API key management
+- Static landing page with minimal frontend-only stack
+- Automation workflow with task state and staged execution
 
-The AI should not directly code. It should first output an architecture decision document.
+## Core principle
+
+**Before coding, clarify architecture.**
+
+Vibe Coding is not skipping engineering; it is moving engineering decisions into a structured AI conversation.
 
 ## Repository structure
 
-```txt
-vibe-coding-architecture-skill/
+```text
+.
 ├── README.md
 ├── SKILL.md
 ├── LICENSE
 ├── .gitignore
 ├── examples/
-│   ├── ai-landing-page.md
-│   ├── saas-mvp.md
-│   └── xiaohongshu-automation.md
-├── references/
-│   └── architecture-checklist.md
-└── xiaohongshu/
-    └── content-plan.md
+│   ├── README.md
+│   ├── ai-saas-mvp.md
+│   ├── local-desktop-app.md
+│   ├── landing-page.md
+│   └── automation-workflow.md
+└── references/
+    └── architecture-checklist.md
 ```
-
-## Example output structure
-
-The Skill asks AI to always output:
-
-```md
-# Architecture Decision
-
-## 1. Product Summary
-
-## 2. Product Type
-
-## 3. Recommended Architecture
-
-## 4. Recommended Tech Stack
-
-## 5. MVP Scope
-
-### Must Have
-
-### Should Have
-
-### Later
-
-### Do Not Build Yet
-
-## 6. Data Model
-
-## 7. API Contract
-
-## 8. Key Risks
-
-## 9. Final Coding Prompt
-```
-
-## Philosophy
-
-Vibe Coding is not skipping engineering.
-
-It is turning engineering decisions into structured conversation.
-
-## License
-
-MIT
