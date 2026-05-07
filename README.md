@@ -10,6 +10,9 @@ A reusable AI Skill for choosing product architecture before coding.
 > 中文文档请看：[`README.zh-CN.md`](./README.zh-CN.md)
 
 ---
+<img width="1233" height="404" alt="image" src="https://github.com/user-attachments/assets/8d949ae0-62af-4836-a32a-7f34239cf3b9" />
+<img width="3840" height="2159" alt="image" src="https://github.com/user-attachments/assets/7ebc74f6-96ac-430b-a036-a42c60888dad" />
+
 
 ## What is this?
 
