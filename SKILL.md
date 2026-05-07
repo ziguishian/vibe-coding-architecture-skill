@@ -7,74 +7,58 @@ description: Help users choose the right product architecture before asking AI t
 
 ## Purpose
 
-This Skill helps the assistant guide users through architecture selection before writing code.
+This skill helps the assistant guide users through architecture selection before writing code.
 
-The assistant must not immediately generate code when the user's product idea is still architecturally unclear.
+When the user's product idea is still architecturally unclear, the assistant should not immediately generate code.
 
-The goal is to turn a vague product idea into a clear architecture plan, MVP scope, risk map, and implementation prompt.
+Instead, the assistant should first help the user clarify:
 
-## When to use this Skill
+- Product type
+- Architecture direction
+- MVP scope
+- Data model
+- API contract
+- Technical risks
+- Final coding prompt
 
-Use this Skill when the user wants to build a product, app, website, SaaS, AI tool, automation workflow, dashboard, local software, browser extension, API service, or agent workflow with AI assistance.
+## When to Use This Skill
 
-Use this Skill especially when the user says things like:
+Use this skill when:
 
-- "Help me build..."
-- "Use AI to make..."
-- "I want to create an app..."
-- "Give me a Codex prompt..."
-- "Help me vibe code..."
-- "What architecture should I use?"
-- "How should I start this project?"
-- "Before coding, help me think through this."
+- The user wants to build a product, website, app, SaaS, AI tool, automation tool, local desktop app, browser extension, admin panel, or API service.
+- The user says “help me build...”.
+- The user says “give me a Codex prompt...”.
+- The user says “what stack should I use...”.
+- The user says “I want to vibe code...”.
+- The requirements are still vague.
+- The user wants to start with Codex, Claude Code, Cursor, or another AI coding tool.
 
-## Core principle
+## Core Principle
 
 Before coding, clarify architecture.
 
-The assistant should help the user decide:
+Vibe Coding is not about skipping engineering.
+It is about moving engineering decisions into a structured conversation with AI.
 
-- What kind of product this is
-- What the MVP should include
-- Whether it should be local-first or cloud-first
-- Whether it needs backend, database, auth, storage, queue, cron, API, payments, or external integrations
-- What tech stack is most suitable
-- What can be avoided in the first version
-
-The assistant should reduce unnecessary complexity.
-
-## Operating rules
-
-1. Do not jump directly into code unless the user explicitly asks for code after the architecture is already clear.
-2. Do not over-engineer simple projects.
-3. Prefer the smallest architecture that can support the product's real use case.
-4. Separate MVP from later features.
-5. When there is uncertainty, make reasonable assumptions and state them clearly.
-6. If a backend, database, auth, storage, or background job is unnecessary for the MVP, say so.
-7. If the product involves AI models, define the model/API abstraction layer before implementation.
-8. If the product has user data, define data ownership, persistence, and privacy direction.
-9. If the product needs multiple systems to communicate, define API contracts before UI implementation.
+The assistant should not rush into implementation.
+The assistant should first help the user make the right architectural decisions.
 
 ## Workflow
 
-### Step 1: Understand the product
+### Step 1: Understand the Product
 
-Summarize the user's product idea in one paragraph.
-
-Identify:
+Summarize:
 
 - Target user
 - Main problem
 - Core scenario
 - Expected output
 - Main interaction flow
-- Platform constraints
-- Data sensitivity
-- Expected deployment environment
+- Constraints
 
-### Step 2: Classify the product type
+### Step 2: Classify the Product Type
 
-Classify the product as one or more of the following:
+Choose one primary type (and one secondary type if necessary):
 
 - Static landing page
 - Content website
@@ -88,14 +72,12 @@ Classify the product as one or more of the following:
 - Mobile-first web app
 - API service
 - Agent workflow
-- Data processing tool
-- Developer tool
 
-Explain why.
+Explain why the classification fits.
 
-### Step 3: Choose architecture direction
+### Step 3: Choose Architecture Direction
 
-Decide whether the product should be:
+Select the architecture direction:
 
 - Frontend-only
 - Frontend + Backend
@@ -105,15 +87,12 @@ Decide whether the product should be:
 - Hybrid local + cloud
 - Agent-based workflow
 - API-first product
-- Static site with CMS/content source
 
-Explain the reason.
+Explain trade-offs and why this direction is appropriate.
 
-### Step 4: Recommend tech stack
+### Step 4: Recommend Tech Stack
 
-Recommend the stack based on product type and MVP scope.
-
-Include, when relevant:
+Recommend:
 
 - Frontend
 - Backend
@@ -121,55 +100,56 @@ Include, when relevant:
 - Authentication
 - File storage
 - AI model/API layer
-- State management
-- Background jobs
 - Deployment
-- Observability/logging
 - Optional tools
 
-Avoid unnecessary complexity.
+Rules:
 
-### Step 5: Define MVP scope
+- Avoid unnecessary complexity.
+- Do not choose a backend unless it is needed.
+- Do not choose a database unless persistent data is needed.
+- Do not choose authentication unless user accounts are needed.
+- Do not choose cloud infrastructure if the product can be local-first.
+- Do not design a large system before validating the MVP.
 
-Separate features into:
+### Step 5: Define MVP Scope
+
+Split scope into:
 
 - Must have
 - Should have
 - Later
 - Do not build yet
 
-The goal is to reduce scope before coding.
+Focus on reducing scope, not expanding it.
 
-### Step 6: Define data model
+### Step 6: Define Data Model
 
-If the product needs data, define:
+If data persistence is needed, define:
 
 - Core entities
-- Important fields
+- Main fields
 - Relationships
-- Persistence strategy
-- Local vs remote storage decision
-- Data migration concern, if any
+- Storage strategy
 
-If the product does not need a database, explain why.
+If no database is needed, explicitly explain why.
 
-### Step 7: Define API contract
+### Step 7: Define API Contract
 
-If the product needs backend or external integrations, define:
+If frontend-backend communication or external integration is needed, define:
 
-- Main API endpoints
-- Request format
-- Response format
+- Endpoint
+- Method
+- Request body
+- Response body
 - Error format
 - Status flow
-- Rate limit or quota concern
-- External service boundaries
 
-If the product is frontend-only or local-only, explain what replaces the API contract, such as local service functions, local storage schema, or IPC command contracts.
+If no API is needed, explicitly explain why.
 
-### Step 8: Identify risks
+### Step 8: Identify Risks
 
-List the main risks:
+List key risks and one mitigation for each:
 
 - Product risk
 - Technical risk
@@ -178,32 +158,28 @@ List the main risks:
 - UX risk
 - Deployment risk
 - Maintenance risk
-- Security/privacy risk
 
-For each risk, provide a simple mitigation.
+### Step 9: Generate Final Coding Prompt
 
-### Step 9: Generate final coding prompt
+Generate a final prompt that can be directly used with Codex, Claude Code, Cursor, or other AI coding agents.
 
-Generate a final prompt that the user can give to Codex, Claude Code, Cursor, or another AI coding tool.
-
-The prompt should include:
+The prompt must include:
 
 - Product goal
 - Architecture decision
 - Tech stack
 - MVP scope
-- File structure
 - Data model
-- API contract or local contract
+- API contract
 - UI direction
+- File structure
 - Development steps
 - Acceptance criteria
 
-## Output format
+## Output Format
 
-Always output in this structure:
+Use this exact output structure:
 
-```md
 # Architecture Decision
 
 ## 1. Product Summary
@@ -231,24 +207,15 @@ Always output in this structure:
 ## 8. Key Risks
 
 ## 9. Final Coding Prompt
-```
 
-## Final checks
-
-Before finishing, check:
+## Final Checks
 
 - Did we avoid unnecessary complexity?
-- Did we define the product type clearly?
-- Did we choose local-first or cloud-first?
-- Did we clarify whether backend/database/auth/storage/background jobs are needed?
-- Did we reduce the MVP scope?
-- Did we define data and API/local contracts where needed?
+- Did we identify the product type clearly?
+- Did we decide local-first or cloud-first?
+- Did we clarify whether backend/database/auth/storage are needed?
+- Did we reduce MVP scope?
+- Did we define the data model if needed?
+- Did we define the API contract if needed?
+- Did we identify key risks?
 - Did we provide a usable coding prompt?
-
-## Style
-
-Be practical, direct, and product-oriented.
-
-Avoid abstract architecture theory unless it changes the actual implementation decision.
-
-Use clear recommendations instead of listing too many options.
