@@ -7,6 +7,9 @@
 
 一个面向普通小白的 Codex 软件架构 Skill：在写代码之前，先帮助用户用专业但通俗的方式规划软件架构。
 
+<img width="1915" height="821" alt="image" src="https://github.com/user-attachments/assets/3ecc5125-1a30-4e46-96ec-8271b526417d" />
+
+
 > **先架构，后开发。**
 >
 > The first step of AI Coding is not generating code. The first step is defining the system.
